@@ -1,9 +1,9 @@
 package main.java.ui;
 
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -21,7 +21,7 @@ public class UIBuilder {
 
     private UIBuilder(){}
 
-    public static void drawPiecesInitial(Pane root){
+    public static void drawPiecesInitial(Group root){
 
         drawPiece(root, PieceColor.White, Piece.King, 3, 0);
         drawPiece(root, PieceColor.White, Piece.Queen, 4, 0);
@@ -43,7 +43,7 @@ public class UIBuilder {
         drawPawnsInitial(root);
     }
 
-    public static void drawPawnsInitial(Pane root){
+    public static void drawPawnsInitial(Group root){
 
         for(int col = 0; col < 8; col++) {
             drawPiece(root, PieceColor.White, Piece.Pawn, col, 1);
@@ -54,7 +54,7 @@ public class UIBuilder {
         }
     }
 
-    public static void drawPiece(Pane root, PieceColor color, Piece piece, int col, int row) {
+    public static void drawPiece(Group root, PieceColor color, Piece piece, int col, int row) {
         ImageView pieceView = getPieceView(color, piece);
         if(pieceView == null) return;
         pieceView.setOnMouseReleased(event -> System.out.println(color + " " + piece));
@@ -78,7 +78,7 @@ public class UIBuilder {
         }
     }
 
-    public static void drawChessterText(Pane root){
+    public static void drawChessterText(Group root){
         Text text = new Text();
         text.setText("Hi, I'm Chesster!");
         text.setX(Constants.CHESSTER_X_OFFSET);
@@ -86,7 +86,7 @@ public class UIBuilder {
         root.getChildren().add(text);
     }
 
-    public static void drawChesster(Pane root){
+    public static void drawChesster(Group root){
         try {
             FileInputStream file = new FileInputStream("C:/Users/Eddie/Desktop/Chesster.png");
             Image image = new Image(file);
@@ -107,17 +107,17 @@ public class UIBuilder {
      * Creates a canvas and uses its GraphicsContext to draw the board, tile by tile.
      * @param root of the FX page, used to attach the board as a child after creation
      */
-    public static void drawBoard(Pane root){
+    public static void drawBoard(Group root){
         final Canvas chessboardCanvas = new Canvas(Constants.SCENE_WIDTH, Constants.SCENE_HEIGHT);
         paintBoard(root);
-        root.getChildren().add(chessboardCanvas);
+//        root.getChildren().add(chessboardCanvas);
     }
 
     /**
      * creates the FX chessboard, row by row.
      * @param root the Pane to paint on.
      */
-    private static void paintBoard(Pane root){
+    private static void paintBoard(Group root){
         for(int y = 0; y < 8; y++){
             paintRow(root, y);
         }
@@ -127,7 +127,7 @@ public class UIBuilder {
      * creates a single row of the FX chessboard, tile by tile.
      * @param root the Pane context to paint on.
      */
-    private static void paintRow(Pane root, int y){
+    private static void paintRow(Group root, int y){
         for(int x = 0; x <8; x++){
             paintTile(root, y, x);
         }
@@ -139,7 +139,7 @@ public class UIBuilder {
      * @param y the vertical offset of the rectangle's top side
      * @param x the horizontal offset of the rectangle's left side
      */
-    private static void paintTile(Pane root, int y, int x){
+    private static void paintTile(Group root, int y, int x){
 
         Rectangle rect = new Rectangle(
             (x * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
@@ -147,6 +147,8 @@ public class UIBuilder {
             Constants.TILE_WIDTH,
             Constants.TILE_HEIGHT
         );
+
+        rect.setOnMouseReleased(event -> System.out.println("Hello, world!"));
 
         if((y%2==0 && x%2==0) || (y%2==1 && x%2==1)){
             rect.setFill(Color.web("#DDDDDD"));
