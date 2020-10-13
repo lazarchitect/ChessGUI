@@ -1,11 +1,11 @@
 package main.java.ui;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import main.java.util.Constants;
 import main.java.util.Enums.Piece;
@@ -18,6 +18,8 @@ import java.io.FileNotFoundException;
  * Contains various methods for visualizing UI elements, such as the chessboard
  */
 public class UIBuilder {
+
+    private UIBuilder(){}
 
     public static void drawPiecesInitial(Pane root){
 
@@ -55,6 +57,7 @@ public class UIBuilder {
     public static void drawPiece(Pane root, PieceColor color, Piece piece, int col, int row) {
         ImageView pieceView = getPieceView(color, piece);
         if(pieceView == null) return;
+        pieceView.setOnMouseReleased(event -> System.out.println(color + " " + piece));
         pieceView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
         pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
         pieceView.setFitHeight(Constants.PIECE_HEIGHT);
@@ -88,6 +91,7 @@ public class UIBuilder {
             FileInputStream file = new FileInputStream("C:/Users/Eddie/Desktop/Chesster.png");
             Image image = new Image(file);
             ImageView chesster = new ImageView(image);
+            chesster.setOnMouseReleased(event -> System.out.println("hi"));
             chesster.setX(Constants.CHESSTER_X_OFFSET);
             chesster.setY(Constants.CHESSTER_Y_OFFSET);
             chesster.setFitHeight(Constants.CHESSTER_HEIGHT);
@@ -105,47 +109,53 @@ public class UIBuilder {
      */
     public static void drawBoard(Pane root){
         final Canvas chessboardCanvas = new Canvas(Constants.SCENE_WIDTH, Constants.SCENE_HEIGHT);
-        GraphicsContext gc = chessboardCanvas.getGraphicsContext2D();
-        paintBoard(gc);
+        paintBoard(root);
         root.getChildren().add(chessboardCanvas);
     }
 
     /**
      * creates the FX chessboard, row by row.
-     * @param gc the graphics context to paint on.
+     * @param root the Pane to paint on.
      */
-    private static void paintBoard(GraphicsContext gc){
+    private static void paintBoard(Pane root){
         for(int y = 0; y < 8; y++){
-            paintRow(y, gc);
+            paintRow(root, y);
         }
     }
 
     /**
      * creates a single row of the FX chessboard, tile by tile.
-     * @param gc the graphics context to paint on.
+     * @param root the Pane context to paint on.
      */
-    private static void paintRow(int y, GraphicsContext gc){
+    private static void paintRow(Pane root, int y){
         for(int x = 0; x <8; x++){
-            paintTile(y, x, gc);
+            paintTile(root, y, x);
         }
     }
 
     /**
      * creates a single tile of the FX chessboard, by painting a rectangle with some given dimensions and location.
-     * @param gc the graphics context to paint on.
+     * @param root the pane to draw the rect on
+     * @param y the vertical offset of the rectangle's top side
+     * @param x the horizontal offset of the rectangle's left side
      */
-    private static void paintTile(int y, int x, GraphicsContext gc){
+    private static void paintTile(Pane root, int y, int x){
+
+        Rectangle rect = new Rectangle(
+            (x * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
+            (y * Constants.TILE_HEIGHT) + Constants.BOARD_Y_OFFSET,
+            Constants.TILE_WIDTH,
+            Constants.TILE_HEIGHT
+        );
+
         if((y%2==0 && x%2==0) || (y%2==1 && x%2==1)){
-            gc.setFill(Color.web("#DDDDDD"));
+            rect.setFill(Color.web("#DDDDDD"));
         }
         else{
-            gc.setFill(Color.web("#333333"));
+            rect.setFill(Color.web("#333333"));
         }
-        gc.fillRect(
-                (x * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
-                (y * Constants.TILE_HEIGHT) + Constants.BOARD_Y_OFFSET,
-                Constants.TILE_WIDTH,
-                Constants.TILE_HEIGHT);
+
+        root.getChildren().add(rect);
     }
 
 }
