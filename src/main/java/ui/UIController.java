@@ -3,7 +3,7 @@ package main.java.ui;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import main.java.Constants;
+import main.java.util.Constants;
 
 public class UIController extends javafx.application.Application {
 
@@ -16,6 +16,8 @@ public class UIController extends javafx.application.Application {
         UIBuilder.drawBoard(root);
 
         UIBuilder.drawChesster(root);
+        UIBuilder.drawChessterText(root);
+        UIBuilder.drawPiecesInitial(root);
 
         stage.setTitle("Chess");
         stage.setScene(scene);
