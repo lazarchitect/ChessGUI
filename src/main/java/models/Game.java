@@ -1,34 +1,58 @@
 package main.java.models;
 
 import javafx.scene.Group;
+import main.java.util.Enums;
 
 public class Game {
 
-    public Board board;
+    private Board board;
 
-    public Player white;
-    public Player black;
+    private Player white;
+    private Player black;
 
     public Game(Group root){
-        white = new Player();
-        black = new Player();
+        setWhite(new Player());
+        setBlack(new Player());
 
-        board = new Board(root);
+        setBoard(new Board(root));
 
     }
 
     public void movePiece(Tile source, Tile destination){
 
-        if(destination.piece.color.equals("black")){
-            black.deadPieces.add(destination.piece);
+        if(destination.getPiece().color.equals(Enums.PieceColor.Black)){
+            getBlack().deadPieces.add(destination.getPiece());
         }
         else{
-            white.deadPieces.add(destination.piece);
+            getWhite().deadPieces.add(destination.getPiece());
         }
 
         // pass by reference I hope?
-        destination.piece = source.piece;
-        source.piece = null;
+        destination.setPiece(source.getPiece());
+        source.setPiece(null);
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Player getWhite() {
+        return white;
+    }
+
+    public void setWhite(Player white) {
+        this.white = white;
+    }
+
+    public Player getBlack() {
+        return black;
+    }
+
+    public void setBlack(Player black) {
+        this.black = black;
+    }
 }

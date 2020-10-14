@@ -12,6 +12,8 @@ public class Board {
 
     public List<List<Tile>> tiles;
 
+    public List<List<String>> tiles2;
+
     public Board(Group root){
         this.tiles = new ArrayList<>();
         for (int row = 0; row < 8; row++) {
@@ -27,14 +29,34 @@ public class Board {
 
         }
 
-        setInitialPieceLocations();
+        setInitialPieceLocations(root);
 
-        UIBuilder.drawPiecesInitial(root);
+
 
     }
 
-    public void setInitialPieceLocations(){
-        tiles.get(0).get(1).piece = new Pawn(Enums.Piece.Pawn, Enums.PieceColor.White);
+    public void setInitialPieceLocations(Group root){
+
+        UIBuilder.drawPiecesInitial(root);
+
+        tiles.get(0).get(1).setPiece(new Pawn(Enums.Piece.Pawn, Enums.PieceColor.Black));
+    }
+
+    public void setPiece(Tile tile, Piece piece) {
+        tile.setPiece(piece);
+    }
+
+    public void setPiece(int row, int col, Piece piece) {
+        tiles.get(row).get(col).setPiece(piece);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder representation = new StringBuilder();
+        for(List<Tile> row: tiles) {
+            representation.append(row + "\n");
+        }
+        return representation.toString();
     }
 
 

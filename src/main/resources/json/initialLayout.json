@@ -1,0 +1,94 @@
+{
+  "tiles" : [
+    [
+      {"piece": {"color": "Black", "name": "Rook"}},
+      {"piece": {"color": "Black", "name": "Knight"}},
+      {"piece": {"color": "Black", "name": "Bishop"}},
+      {"piece": {"color": "Black", "name": "King"}},
+      {"piece": {"color": "Black", "name": "Queen"}},
+      {"piece": {"color": "Black", "name": "Bishop"}},
+      {"piece": {"color": "Black", "name": "Knight"}},
+      {"piece": {"color": "Black", "name": "Rook"}}
+    ],
+    [
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}},
+      {"piece": {"color": "Black", "name": "Pawn"}}
+    ],
+    [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    [
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}},
+      {"piece": {"color": "White", "name": "Pawn"}}
+    ],
+    [
+      {"piece": {"color": "White", "name": "Rook"}},
+      {"piece": {"color": "White", "name": "Knight"}},
+      {"piece": {"color": "White", "name": "Bishop"}},
+      {"piece": {"color": "White", "name": "King"}},
+      {"piece": {"color": "White", "name": "Queen"}},
+      {"piece": {"color": "White", "name": "Bishop"}},
+      {"piece": {"color": "White", "name": "Knight"}},
+      {"piece": {"color": "White", "name": "Rook"}}
+    ]
+  ],
+  "tiles2": [
+    ["BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"],
+    ["BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"],
+    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
+    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
+    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
+    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
+    ["WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"],
+    ["WR", "WN", "WB", "WQ", "WK", "WB", "WN", "WR"]
+  ]
+}

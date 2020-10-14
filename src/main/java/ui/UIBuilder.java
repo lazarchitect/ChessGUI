@@ -20,7 +20,9 @@ public class UIBuilder {
 
     private UIBuilder(){}
 
-    public static void drawPiecesInitial(Group root){
+    public static void drawPiecesInitial(Group root) {
+
+
 
         drawPiece(root, PieceColor.White, Piece.King, 3, 0);
         drawPiece(root, PieceColor.White, Piece.Queen, 4, 0);
@@ -129,7 +131,7 @@ public class UIBuilder {
             Constants.TILE_HEIGHT
         );
 
-        rect.setOnMouseReleased(event -> System.out.println("Hello, world!"));
+        rect.setOnMouseReleased(event -> System.out.println(y + "-" + x));
 
         if((y%2==0 && x%2==0) || (y%2==1 && x%2==1)){
             rect.setFill(Color.web("#DDDDDD"));

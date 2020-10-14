@@ -23,4 +23,7 @@ public class Constants {
     public static final double CHESSTER_WIDTH = 150;
     public static final double CHESSTER_HEIGHT = 150;
 
+    //json
+    public static final int BOARD_JSON_SIZE = 462;
+
 }
