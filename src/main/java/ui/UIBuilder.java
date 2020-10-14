@@ -1,7 +1,6 @@
 package main.java.ui;
 
 import javafx.scene.Group;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -104,32 +103,14 @@ public class UIBuilder {
     }
 
     /**
-     * Creates a canvas and uses its GraphicsContext to draw the board, tile by tile.
-     * @param root of the FX page, used to attach the board as a child after creation
+     * creates the FX chessboard, row by row.
+     * @param root the Group to paint on.
      */
     public static void drawBoard(Group root){
-        final Canvas chessboardCanvas = new Canvas(Constants.SCENE_WIDTH, Constants.SCENE_HEIGHT);
-        paintBoard(root);
-//        root.getChildren().add(chessboardCanvas);
-    }
-
-    /**
-     * creates the FX chessboard, row by row.
-     * @param root the Pane to paint on.
-     */
-    private static void paintBoard(Group root){
         for(int y = 0; y < 8; y++){
-            paintRow(root, y);
-        }
-    }
-
-    /**
-     * creates a single row of the FX chessboard, tile by tile.
-     * @param root the Pane context to paint on.
-     */
-    private static void paintRow(Group root, int y){
-        for(int x = 0; x <8; x++){
-            paintTile(root, y, x);
+            for(int x = 0; x < 8; x++){
+                paintTile(root, y, x);
+            }
         }
     }
 
@@ -139,7 +120,7 @@ public class UIBuilder {
      * @param y the vertical offset of the rectangle's top side
      * @param x the horizontal offset of the rectangle's left side
      */
-    private static void paintTile(Group root, int y, int x){
+    public static void paintTile(Group root, int y, int x){
 
         Rectangle rect = new Rectangle(
             (x * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,

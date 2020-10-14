@@ -1,11 +1,21 @@
 package main.java.models;
 
+import javafx.scene.Group;
+
 public class Game {
 
-    Board board;
+    public Board board;
 
-    Player white;
-    Player black;
+    public Player white;
+    public Player black;
+
+    public Game(Group root){
+        white = new Player();
+        black = new Player();
+
+        board = new Board(root);
+
+    }
 
     public void movePiece(Tile source, Tile destination){
 
