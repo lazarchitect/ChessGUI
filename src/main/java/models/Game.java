@@ -15,21 +15,12 @@ public class Game {
         setWhite(new Player());
         setBlack(new Player());
         setBoard(b);
-        UIBuilder.drawBoard(root);
-        b.setInitialPieceLocations(root);
-    }
-
-    public Game(Group root){
-        setWhite(new Player());
-        setBlack(new Player());
-
-        setBoard(new Board(root));
-
+        UIBuilder.drawBoard(root, b);
     }
 
     public void movePiece(Tile source, Tile destination){
 
-        if(destination.getPiece().color.equals(Enums.PieceColor.Black)){
+        if(destination.getPiece().getColor().equals(Enums.PieceColor.Black)){
             getBlack().deadPieces.add(destination.getPiece());
         }
         else{

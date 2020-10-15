@@ -22,7 +22,6 @@ public class Tile {
 
     @Override
     public String toString() {
-        if(piece == null) return "";
-        return piece.color.toString() + " " + piece.name.toString();
+        return piece != null ? piece.toString() : null;
     }
 }

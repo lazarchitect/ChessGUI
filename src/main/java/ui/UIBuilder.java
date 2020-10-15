@@ -6,9 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import main.java.models.Board;
+import main.java.models.Piece;
 import main.java.util.Constants;
-import main.java.util.Enums.Piece;
-import main.java.util.Enums.PieceColor;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,65 +19,6 @@ import java.io.FileNotFoundException;
 public class UIBuilder {
 
     private UIBuilder(){}
-
-    public static void drawPiecesInitial(Group root) {
-
-
-
-        drawPiece(root, PieceColor.White, Piece.King, 3, 0);
-        drawPiece(root, PieceColor.White, Piece.Queen, 4, 0);
-        drawPiece(root, PieceColor.White, Piece.Rook, 7, 0);
-        drawPiece(root, PieceColor.White, Piece.Rook, 0, 0);
-        drawPiece(root, PieceColor.White, Piece.Bishop, 2, 0);
-        drawPiece(root, PieceColor.White, Piece.Bishop, 5, 0);
-        drawPiece(root, PieceColor.White, Piece.Knight, 1, 0);
-        drawPiece(root, PieceColor.White, Piece.Knight, 6, 0);
-
-        drawPiece(root, PieceColor.Black, Piece.King, 3, 7);
-        drawPiece(root, PieceColor.Black, Piece.Queen, 4, 7);
-        drawPiece(root, PieceColor.Black, Piece.Rook, 7, 7);
-        drawPiece(root, PieceColor.Black, Piece.Rook, 0, 7);
-        drawPiece(root, PieceColor.Black, Piece.Bishop, 2, 7);
-        drawPiece(root, PieceColor.Black, Piece.Bishop, 5, 7);
-        drawPiece(root, PieceColor.Black, Piece.Knight, 1, 7);
-        drawPiece(root, PieceColor.Black, Piece.Knight, 6, 7);
-        drawPawnsInitial(root);
-    }
-
-    public static void drawPawnsInitial(Group root){
-
-        for(int col = 0; col < 8; col++) {
-            drawPiece(root, PieceColor.White, Piece.Pawn, col, 1);
-        }
-
-        for(int col = 0; col < 8; col++) {
-            drawPiece(root, PieceColor.Black, Piece.Pawn, col, 6);
-        }
-    }
-
-    public static void drawPiece(Group root, PieceColor color, Piece piece, int col, int row) {
-        ImageView pieceView = getPieceView(color, piece);
-        if(pieceView == null) return;
-        pieceView.setOnMouseReleased(event -> System.out.println(color + " " + piece));
-        pieceView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
-        pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
-        pieceView.setFitHeight(Constants.PIECE_HEIGHT);
-        pieceView.setFitWidth(Constants.PIECE_WIDTH);
-        root.getChildren().add(pieceView);
-    }
-
-    public static ImageView getPieceView(PieceColor color, Piece piece) {
-        try {
-            String path = "C:/Users/Eddie/Desktop/" + color + piece + ".png";
-            FileInputStream file = new FileInputStream(path);
-            Image image = new Image(file);
-            return new ImageView(image);
-        }
-        catch(FileNotFoundException fnfe){
-            System.out.println("ERROR: " + color + " " + piece + " IMAGE NOT FOUND");
-            return null;
-        }
-    }
 
     public static void drawChessterText(Group root){
         Text text = new Text();
@@ -104,43 +45,67 @@ public class UIBuilder {
         }
     }
 
-    /**
-     * creates the FX chessboard, row by row.
-     * @param root the Group to paint on.
-     */
-    public static void drawBoard(Group root){
-        for(int y = 0; y < 8; y++){
-            for(int x = 0; x < 8; x++){
-                paintTile(root, y, x);
+    public static void drawBoard(Group root, Board b){
+
+        Group uiBoard = new Group();
+
+        for(int row = 0; row < 8; row++){
+            for(int col = 0; col < 8; col++){
+                paintTile(uiBoard, row, col, b);
             }
         }
+        root.getChildren().add(uiBoard);
     }
 
-    /**
-     * creates a single tile of the FX chessboard, by painting a rectangle with some given dimensions and location.
-     * @param root the pane to draw the rect on
-     * @param y the vertical offset of the rectangle's top side
-     * @param x the horizontal offset of the rectangle's left side
-     */
-    public static void paintTile(Group root, int y, int x){
+    public static void paintTile(Group uiBoard, int row, int col, Board b){
 
         Rectangle rect = new Rectangle(
-            (x * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
-            (y * Constants.TILE_HEIGHT) + Constants.BOARD_Y_OFFSET,
+            (col * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
+            (row * Constants.TILE_HEIGHT) + Constants.BOARD_Y_OFFSET,
             Constants.TILE_WIDTH,
             Constants.TILE_HEIGHT
         );
 
-        rect.setOnMouseReleased(event -> System.out.println(y + "-" + x));
+        rect.setOnMouseReleased(event -> b.tiles.get(row).get(col).getPiece().);
 
-        if((y%2==0 && x%2==0) || (y%2==1 && x%2==1)){
+        if((row%2==0 && col%2==0) || (row%2==1 && col%2==1)){
             rect.setFill(Color.web("#DDDDDD"));
         }
         else{
             rect.setFill(Color.web("#333333"));
         }
 
-        root.getChildren().add(rect);
+        uiBoard.getChildren().add(rect);
+
+        main.java.models.Piece piece = b.tiles.get(row).get(col).getPiece();
+
+        if(piece != null){
+            drawPiece(uiBoard, piece, row, col);
+        }
+    }
+
+    public static void drawPiece(Group uiBoard, Piece piece, int row, int col) {
+        ImageView pieceView = getPieceView(piece);
+        if(pieceView == null) return;
+        pieceView.setMouseTransparent(true);
+        pieceView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
+        pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
+        pieceView.setFitHeight(Constants.PIECE_HEIGHT);
+        pieceView.setFitWidth(Constants.PIECE_WIDTH);
+        uiBoard.getChildren().add(pieceView);
+    }
+
+    public static ImageView getPieceView(Piece piece) {
+        try {
+            String path = "C:/Users/Eddie/Desktop/" + piece.getColor() + piece.getType() + ".png";
+            FileInputStream file = new FileInputStream(path);
+            Image image = new Image(file);
+            return new ImageView(image);
+        }
+        catch(FileNotFoundException fnfe){
+            System.out.println("ERROR: " + piece.getColor() + " " + piece.getType() + " IMAGE NOT FOUND");
+            return null;
+        }
     }
 
 }

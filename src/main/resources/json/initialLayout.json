@@ -1,34 +1,24 @@
 {
   "tiles" : [
     [
-      {"piece": {"color": "Black", "name": "Rook"}},
-      {"piece": {"color": "Black", "name": "Knight"}},
-      {"piece": {"color": "Black", "name": "Bishop"}},
-      {"piece": {"color": "Black", "name": "King"}},
-      {"piece": {"color": "Black", "name": "Queen"}},
-      {"piece": {"color": "Black", "name": "Bishop"}},
-      {"piece": {"color": "Black", "name": "Knight"}},
-      {"piece": {"color": "Black", "name": "Rook"}}
+      {"piece": {"color": "Black", "type": "Rook"}},
+      {"piece": {"color": "Black", "type": "Knight"}},
+      {"piece": {"color": "Black", "type": "Bishop"}},
+      {"piece": {"color": "Black", "type": "King"}},
+      {"piece": {"color": "Black", "type": "Queen"}},
+      {"piece": {"color": "Black", "type": "Bishop"}},
+      {"piece": {"color": "Black", "type": "Knight"}},
+      {"piece": {"color": "Black", "type": "Rook"}}
     ],
     [
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}},
-      {"piece": {"color": "Black", "name": "Pawn"}}
-    ],
-    [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}},
+      {"piece": {"color": "Black", "type": "Pawn"}}
     ],
     [
       {},
@@ -61,24 +51,34 @@
       {}
     ],
     [
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}},
-      {"piece": {"color": "White", "name": "Pawn"}}
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
     ],
     [
-      {"piece": {"color": "White", "name": "Rook"}},
-      {"piece": {"color": "White", "name": "Knight"}},
-      {"piece": {"color": "White", "name": "Bishop"}},
-      {"piece": {"color": "White", "name": "King"}},
-      {"piece": {"color": "White", "name": "Queen"}},
-      {"piece": {"color": "White", "name": "Bishop"}},
-      {"piece": {"color": "White", "name": "Knight"}},
-      {"piece": {"color": "White", "name": "Rook"}}
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}},
+      {"piece": {"color": "White", "type": "Pawn"}}
+    ],
+    [
+      {"piece": {"color": "White", "type": "Rook"}},
+      {"piece": {"color": "White", "type": "Knight"}},
+      {"piece": {"color": "White", "type": "Bishop"}},
+      {"piece": {"color": "White", "type": "King"}},
+      {"piece": {"color": "White", "type": "Queen"}},
+      {"piece": {"color": "White", "type": "Bishop"}},
+      {"piece": {"color": "White", "type": "Knight"}},
+      {"piece": {"color": "White", "type": "Rook"}}
     ]
   ]
 }

@@ -7,7 +7,7 @@ public class Enums {
         Black
     }
 
-    public enum Piece {
+    public enum PieceType {
         Pawn,
         King,
         Rook,

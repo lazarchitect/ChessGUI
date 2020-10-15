@@ -1,12 +1,13 @@
 package main.java.models.pieces;
 
 import main.java.models.Piece;
-import main.java.util.Enums;
+import main.java.models.Tile;
+import main.java.util.Enums.*;
 
 public class Pawn extends Piece {
 
-    public Pawn(Enums.Piece name, Enums.PieceColor color) {
-       super(name, color);
+    public Pawn(PieceType name, PieceColor color, Tile tile) {
+       super(name, color, tile);
     }
 
 //    public int[][] validMoves(){
