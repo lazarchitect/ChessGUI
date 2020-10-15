@@ -12,8 +12,6 @@ public class Board {
 
     public List<List<Tile>> tiles;
 
-    public List<List<String>> tiles2;
-
     public Board(Group root){
         this.tiles = new ArrayList<>();
         for (int row = 0; row < 8; row++) {

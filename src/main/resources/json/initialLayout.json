@@ -80,15 +80,5 @@
       {"piece": {"color": "White", "name": "Knight"}},
       {"piece": {"color": "White", "name": "Rook"}}
     ]
-  ],
-  "tiles2": [
-    ["BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"],
-    ["BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"],
-    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
-    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
-    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
-    ["NN", "NN", "NN", "NN", "NN", "NN", "NN", "NN"],
-    ["WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"],
-    ["WR", "WN", "WB", "WQ", "WK", "WB", "WN", "WR"]
   ]
 }
