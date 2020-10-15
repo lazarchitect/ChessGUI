@@ -66,7 +66,7 @@ public class UIBuilder {
             Constants.TILE_HEIGHT
         );
 
-        rect.setOnMouseReleased(event -> b.tiles.get(row).get(col).getPiece().);
+        rect.setOnMouseReleased(event -> rect.setFill(Color.RED));
 
         if((row%2==0 && col%2==0) || (row%2==1 && col%2==1)){
             rect.setFill(Color.web("#DDDDDD"));

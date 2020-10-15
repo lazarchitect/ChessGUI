@@ -1,6 +1,7 @@
 package main.java.models;
 
-import main.java.util.Enums.*;
+import main.java.util.Enums.PieceColor;
+import main.java.util.Enums.PieceType;
 
 public class Piece {
 
@@ -9,8 +10,8 @@ public class Piece {
     private int row;
     private int col;
 
-    private PieceType type; // "bishop", "king", etc
-    private PieceColor color; // "white" or "black"
+    private PieceType type;
+    private PieceColor color;
 
 
     public Piece(PieceType type, PieceColor color, Tile tile) {
