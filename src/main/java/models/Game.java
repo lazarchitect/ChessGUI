@@ -1,6 +1,7 @@
 package main.java.models;
 
 import javafx.scene.Group;
+import main.java.ui.UIBuilder;
 import main.java.util.Enums;
 
 public class Game {
@@ -9,6 +10,14 @@ public class Game {
 
     private Player white;
     private Player black;
+
+    public Game(Group root, Board b) {
+        setWhite(new Player());
+        setBlack(new Player());
+        setBoard(b);
+        UIBuilder.drawBoard(root);
+        b.setInitialPieceLocations(root);
+    }
 
     public Game(Group root){
         setWhite(new Player());

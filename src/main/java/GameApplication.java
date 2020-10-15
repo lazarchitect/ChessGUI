@@ -3,9 +3,11 @@ package main.java;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.java.models.Board;
 import main.java.models.Game;
 import main.java.ui.UIBuilder;
 import main.java.util.Constants;
+import main.java.util.JSONParser;
 
 public class GameApplication extends javafx.application.Application {
 
@@ -19,7 +21,10 @@ public class GameApplication extends javafx.application.Application {
         Group root = new Group();
         Scene scene = new Scene(root, Constants.SCENE_WIDTH, Constants.SCENE_HEIGHT);
 
-        Game g = new Game(root);
+        String rawBoard = JSONParser.readJSONToString("initialLayout");
+        Board b = JSONParser.convertStringToObject(rawBoard);
+
+        Game g = new Game(root, b);
 
         UIBuilder.drawChesster(root);
         UIBuilder.drawChessterText(root);
