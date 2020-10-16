@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 import main.java.models.Board;
 import main.java.models.Piece;
 import main.java.util.Constants;
-import main.java.util.Enums.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

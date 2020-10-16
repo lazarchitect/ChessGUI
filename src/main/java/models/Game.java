@@ -1,7 +1,6 @@
 package main.java.models;
 
 import javafx.scene.Group;
-import main.java.ui.UIBuilder;
 import main.java.util.Enums;
 
 public class Game {

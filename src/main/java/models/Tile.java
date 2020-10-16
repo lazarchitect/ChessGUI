@@ -4,14 +4,6 @@ public class Tile {
 
     private Piece piece;
 
-    public Tile(){
-        this.piece = null;
-    }
-
-    public Tile(Piece piece){
-        this.piece = piece;
-    }
-
     public void setPiece(Piece piece){
         this.piece = piece;
     }
