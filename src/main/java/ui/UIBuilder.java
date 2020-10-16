@@ -9,6 +9,7 @@ import javafx.scene.text.Text;
 import main.java.models.Board;
 import main.java.models.Piece;
 import main.java.util.Constants;
+import main.java.util.Enums.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,15 +21,15 @@ public class UIBuilder {
 
     private UIBuilder(){}
 
-    public static void drawChessterText(Group root){
+    public static void drawChessterText(Group parent){
         Text text = new Text();
         text.setText("Hi, I'm Chesster!");
         text.setX(Constants.CHESSTER_X_OFFSET);
         text.setY(Constants.CHESSTER_Y_OFFSET);
-        root.getChildren().add(text);
+        parent.getChildren().add(text);
     }
 
-    public static void drawChesster(Group root){
+    public static void drawChesster(Group parent){
         try {
             FileInputStream file = new FileInputStream("C:/Users/Eddie/Desktop/Chesster.png");
             Image image = new Image(file);
@@ -38,7 +39,7 @@ public class UIBuilder {
             chesster.setY(Constants.CHESSTER_Y_OFFSET);
             chesster.setFitHeight(Constants.CHESSTER_HEIGHT);
             chesster.setFitWidth(Constants.CHESSTER_WIDTH);
-            root.getChildren().add(chesster);
+            parent.getChildren().add(chesster);
         }
         catch(FileNotFoundException fnfe){
             System.out.println("ERROR: CHESSTER IMAGE NOT FOUND");
@@ -50,14 +51,18 @@ public class UIBuilder {
         Group uiBoard = new Group();
 
         for(int row = 0; row < 8; row++){
+
+            Group uiRow = new Group();
+
             for(int col = 0; col < 8; col++){
-                paintTile(uiBoard, row, col, b);
+                paintTile(uiRow, row, col, b);
             }
+            uiBoard.getChildren().add(uiRow);
         }
         root.getChildren().add(uiBoard);
     }
 
-    public static void paintTile(Group uiBoard, int row, int col, Board b){
+    public static void paintTile(Group uiRow, int row, int col, Board b){
 
         Rectangle rect = new Rectangle(
             (col * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
@@ -66,7 +71,9 @@ public class UIBuilder {
             Constants.TILE_HEIGHT
         );
 
-        rect.setOnMouseReleased(event -> rect.setFill(Color.RED));
+        // todo: make a method to determine a list of valid tile moves for a given piece
+        // todo: make a method to highlight a subsert list of tiles
+        //rect.setOnMouseReleased(event -> highlightValidMoves(b, row, col));
 
         if((row%2==0 && col%2==0) || (row%2==1 && col%2==1)){
             rect.setFill(Color.web("#DDDDDD"));
@@ -75,12 +82,12 @@ public class UIBuilder {
             rect.setFill(Color.web("#333333"));
         }
 
-        uiBoard.getChildren().add(rect);
+        uiRow.getChildren().add(rect);
 
         main.java.models.Piece piece = b.tiles.get(row).get(col).getPiece();
 
         if(piece != null){
-            drawPiece(uiBoard, piece, row, col);
+            drawPiece(uiRow, piece, row, col);
         }
     }
 

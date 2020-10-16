@@ -13,6 +13,7 @@ public class JSONParser {
         String rawJSON = readJSONToString("initialLayout");
         Board b = convertStringToObject(rawJSON);
         System.out.println(b);
+        System.out.println(convertObjectToString(b));
     }
 
     /**
@@ -23,6 +24,11 @@ public class JSONParser {
     public static Board convertStringToObject(String rawJSON){
         Gson g = new Gson();
         return g.fromJson(rawJSON, Board.class);
+    }
+
+    public static String convertObjectToString(Object obj) {
+        Gson g = new Gson();
+        return g.toJson(obj);
     }
 
 
