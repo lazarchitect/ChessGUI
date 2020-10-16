@@ -26,6 +26,7 @@ public class GameApplication extends javafx.application.Application {
 
         new Game(root, b);
 
+        UIBuilder.drawBoard(root, b);
         UIBuilder.drawChesster(root);
         UIBuilder.drawChessterText(root);
 

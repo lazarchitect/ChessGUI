@@ -15,7 +15,6 @@ public class Game {
         setWhite(new Player());
         setBlack(new Player());
         setBoard(b);
-        UIBuilder.drawBoard(root, b);
     }
 
     public void movePiece(Tile source, Tile destination){
