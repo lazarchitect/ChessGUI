@@ -8,10 +8,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import main.java.models.Board;
 import main.java.models.Piece;
+import main.java.models.Tile;
 import main.java.util.Constants;
+import main.java.util.Enums.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 /**
  * Contains various methods for visualizing UI elements, such as the chessboard
@@ -52,16 +55,17 @@ public class UIBuilder {
         for(int row = 0; row < 8; row++){
 
             Group uiRow = new Group();
+            uiBoard.getChildren().add(uiRow);
 
             for(int col = 0; col < 8; col++){
-                paintTile(uiRow, row, col, b);
+                drawTile(uiBoard, row, col, b);
             }
-            uiBoard.getChildren().add(uiRow);
+
         }
         root.getChildren().add(uiBoard);
     }
 
-    public static void paintTile(Group uiRow, int row, int col, Board b){
+    public static void drawTile(Group uiBoard, int row, int col, Board b){
 
         Rectangle rect = new Rectangle(
             (col * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
@@ -71,8 +75,8 @@ public class UIBuilder {
         );
 
         // todo: make a method to determine a list of valid tile moves for a given piece
-        // todo: make a method to highlight a subsert list of tiles
-        //rect.setOnMouseReleased(event -> highlightValidMoves(b, row, col));
+        // todo: make a method to highlight a subset list of tiles
+        rect.setOnMouseReleased(event -> highlightValidMoves(uiBoard, b, row, col));
 
         if((row%2==0 && col%2==0) || (row%2==1 && col%2==1)){
             rect.setFill(Color.web("#DDDDDD"));
@@ -81,6 +85,7 @@ public class UIBuilder {
             rect.setFill(Color.web("#333333"));
         }
 
+        Group uiRow = (Group) uiBoard.getChildren().get(row);
         uiRow.getChildren().add(rect);
 
         main.java.models.Piece piece = b.tiles.get(row).get(col).getPiece();
@@ -112,6 +117,40 @@ public class UIBuilder {
             System.out.println("ERROR: " + piece.getColor() + " " + piece.getType() + " IMAGE NOT FOUND");
             return null;
         }
+    }
+
+
+    private static void highlightValidMoves(Group uiBoard, Board b, int row, int col) {
+        Piece currentPiece = b.pieceAt(row, col);
+
+        if(currentPiece == null) return;
+
+        switch(currentPiece.getType()) {
+            case Pawn:
+                highlightValidPawnMoves(uiBoard, b, row, col);
+
+        }
+    }
+
+    private static void highlightValidPawnMoves(Group uiBoard, Board b, int row, int col) {
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black) {
+            if (currentPiece.getRow() == 1) {
+                if (b.pieceAt(2, col) == null) {
+                    highlight(uiBoard, b, 2, currentPiece.getCol());
+                }
+                if (b.pieceAt(3, col) == null) {
+                    highlight(uiBoard, b, 3, currentPiece.getCol());
+                }
+            }
+        }
+    }
+
+    private static void highlight(Group uiBoard, Board b, int row, int col) {
+        Group uiRow = (Group) uiBoard.getChildren().get(row);
+        Rectangle rect = (Rectangle) uiRow.getChildren().get(col);
+        rect.setFill(Color.rgb(222, 30, 190));
+        System.out.println("hi");
     }
 
 }
