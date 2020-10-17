@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import main.java.models.Board;
 import main.java.models.Piece;
@@ -23,30 +24,7 @@ public class UIBuilder {
 
     private UIBuilder(){}
 
-    public static void drawChessterText(Group parent){
-        Text text = new Text();
-        text.setText("Hi, I'm Chesster!");
-        text.setX(Constants.CHESSTER_X_OFFSET);
-        text.setY(Constants.CHESSTER_Y_OFFSET);
-        parent.getChildren().add(text);
-    }
 
-    public static void drawChesster(Group parent){
-        try {
-            FileInputStream file = new FileInputStream("C:/Users/Eddie/Desktop/Chesster.png");
-            Image image = new Image(file);
-            ImageView chesster = new ImageView(image);
-            chesster.setOnMouseReleased(event -> System.out.println("hi"));
-            chesster.setX(Constants.CHESSTER_X_OFFSET);
-            chesster.setY(Constants.CHESSTER_Y_OFFSET);
-            chesster.setFitHeight(Constants.CHESSTER_HEIGHT);
-            chesster.setFitWidth(Constants.CHESSTER_WIDTH);
-            parent.getChildren().add(chesster);
-        }
-        catch(FileNotFoundException fnfe){
-            System.out.println("ERROR: CHESSTER IMAGE NOT FOUND");
-        }
-    }
 
     public static void drawBoard(Group root, Board b){
 
@@ -78,7 +56,7 @@ public class UIBuilder {
         // todo: make a method to highlight a subset list of tiles
         rect.setOnMouseReleased(event -> highlightValidMoves(uiBoard, b, row, col));
 
-        if((row%2==0 && col%2==0) || (row%2==1 && col%2==1)){
+        if(isDarkTile(row, col)){
             rect.setFill(Color.web("#DDDDDD"));
         }
         else{
@@ -149,8 +127,21 @@ public class UIBuilder {
     private static void highlight(Group uiBoard, Board b, int row, int col) {
         Group uiRow = (Group) uiBoard.getChildren().get(row);
         Rectangle rect = (Rectangle) uiRow.getChildren().get(col);
-        rect.setFill(Color.rgb(222, 30, 190));
-        System.out.println("hi");
+
+        if(isDarkTile(row, col)){
+            rect.setStroke(Color.web("#FFFFDD"));
+            rect.setStrokeWidth(5);
+            rect.setStrokeType(StrokeType.INSIDE);
+        }
+        else {
+            rect.setStroke(Color.web("#666633"));
+            rect.setStrokeWidth(5);
+            rect.setStrokeType(StrokeType.INSIDE);
+        }
+    }
+
+    private static boolean isDarkTile(int row, int col){
+        return (row%2==0 && col%2==0) || (row%2==1 && col%2==1);
     }
 
 }
