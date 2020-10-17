@@ -88,7 +88,7 @@ public class UIBuilder {
         Group uiRow = (Group) uiBoard.getChildren().get(row);
         uiRow.getChildren().add(rect);
 
-        main.java.models.Piece piece = b.tiles.get(row).get(col).getPiece();
+        main.java.models.Piece piece = b.pieceAt(row, col);
 
         if(piece != null){
             drawPiece(uiRow, piece, row, col);

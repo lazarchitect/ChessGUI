@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Board {
 
-    public List<List<Tile>> tiles;
+    private List<List<Tile>> tiles;
 
     public List<Tile> rowAt(int row) {
         return this.tiles.get(row);
