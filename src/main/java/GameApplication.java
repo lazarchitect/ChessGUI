@@ -5,7 +5,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.java.models.Board;
 import main.java.models.Game;
-import main.java.ui.UIBuilder;
+import main.java.ui.BoardBuilder;
+import main.java.ui.ChessterBuilder;
 import main.java.util.Constants;
 import main.java.util.JSONParser;
 
@@ -26,9 +27,9 @@ public class GameApplication extends javafx.application.Application {
 
         new Game(root, b);
 
-        UIBuilder.drawBoard(root, b);
-        UIBuilder.drawChesster(root);
-        UIBuilder.drawChessterText(root);
+        BoardBuilder.drawBoard(root, b);
+        ChessterBuilder.drawChesster(root);
+        ChessterBuilder.drawChessterText(root);
 
         stage.setTitle("Chess");
         stage.setScene(scene);
