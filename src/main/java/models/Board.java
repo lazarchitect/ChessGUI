@@ -6,6 +6,18 @@ public class Board {
 
     public List<List<Tile>> tiles;
 
+    public List<Tile> rowAt(int row) {
+        return this.tiles.get(row);
+    }
+
+    public Tile tileAt(int row, int col) {
+        return this.tiles.get(row).get(col);
+    }
+
+    public Piece pieceAt(int row, int col) {
+        return this.tiles.get(row).get(col).getPiece();
+    }
+
     @Override
     public String toString(){
         StringBuilder representation = new StringBuilder();
