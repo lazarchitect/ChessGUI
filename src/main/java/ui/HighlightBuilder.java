@@ -42,6 +42,21 @@ public class HighlightBuilder {
                 }
             }
         }
+        else {
+            if (currentPiece.getRow() == 6) {
+                if (b.pieceAt(5, col) == null) {
+                    highlight(uiBoard, b, 5, currentPiece.getCol());
+                }
+                if (b.pieceAt(4, col) == null) {
+                    highlight(uiBoard, b, 4, currentPiece.getCol());
+                }
+            }
+            else {
+                if (b.pieceAt(currentPiece.getRow() - 1, currentPiece.getCol()) == null) {
+                    highlight(uiBoard, b, currentPiece.getRow() - 1, currentPiece.getCol());
+                }
+            }
+        }
     }
 
     private static void highlight(Group uiBoard, Board b, int row, int col) {
