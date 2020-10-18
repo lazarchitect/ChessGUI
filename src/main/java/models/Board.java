@@ -2,7 +2,6 @@ package main.java.models;
 
 import lombok.Getter;
 import lombok.Setter;
-import main.java.ui.BoardBuilder;
 
 import java.util.List;
 
