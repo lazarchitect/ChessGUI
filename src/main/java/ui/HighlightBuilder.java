@@ -19,7 +19,7 @@ public class HighlightBuilder {
         if(currentPiece == null) return;
 
         switch(currentPiece.getType()) {
-            case PAWN:
+            case Pawn:
                 highlightValidPawnMoves(uiBoard, b, row, col);
 
         }
@@ -27,7 +27,7 @@ public class HighlightBuilder {
 
     private static void highlightValidPawnMoves(Group uiBoard, Board b, int row, int col) {
         Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.BLACK) {
+        if(currentPiece.getColor() == Enums.PieceColor.Black) {
             if (currentPiece.getRow() == 1) {
                 if (b.pieceAt(2, col) == null) {
                     highlight(uiBoard, b, 2, currentPiece.getCol());
@@ -36,12 +36,19 @@ public class HighlightBuilder {
                     highlight(uiBoard, b, 3, currentPiece.getCol());
                 }
             }
+            else {
+                if (b.pieceAt(currentPiece.getRow() + 1, currentPiece.getCol()) == null) {
+                    highlight(uiBoard, b, currentPiece.getRow() + 1, currentPiece.getCol());
+                }
+            }
         }
     }
 
     private static void highlight(Group uiBoard, Board b, int row, int col) {
         Group uiRow = (Group) uiBoard.getChildren().get(row);
         Rectangle rect = (Rectangle) uiRow.getChildren().get(col);
+
+        b.tileAt(row, col).setHighlighted(true);
 
         if(Utils.isDarkTile(row, col)){
             rect.setStroke(Color.web("#FFFFDD"));

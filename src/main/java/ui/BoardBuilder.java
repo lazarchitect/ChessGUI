@@ -48,7 +48,7 @@ public class BoardBuilder {
 
         // todo: make a method to determine a list of valid tile moves for a given piece
         // todo: make a method to highlight a subset list of tiles
-        rect.setOnMouseReleased(event -> HighlightBuilder.highlightValidMoves(uiBoard, b, row, col));
+        rect.setOnMouseReleased(event -> ClickHandler.handleTileClick(uiBoard, b, row, col));
 
         if(Utils.isDarkTile(row, col)){
             rect.setFill(Color.web("#DDDDDD"));
