@@ -2,6 +2,10 @@ package main.java.models;
 
 import java.util.List;
 
+/**
+ * Class that represents an 8x8 board state of tiles and pieces.
+ * Instantiated via Gson reading JSON, never directly.
+ */
 public class Board {
 
     private List<List<Tile>> tiles;

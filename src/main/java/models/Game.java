@@ -1,8 +1,9 @@
 package main.java.models;
 
-import javafx.scene.Group;
+import lombok.Data;
 import main.java.util.Enums;
 
+@Data
 public class Game {
 
     private Board board;
@@ -10,7 +11,7 @@ public class Game {
     private Player white;
     private Player black;
 
-    public Game(Group root, Board b) {
+    public Game(Board b) {
         setWhite(new Player());
         setBlack(new Player());
         setBoard(b);
@@ -19,38 +20,14 @@ public class Game {
     public void movePiece(Tile source, Tile destination){
 
         if(destination.getPiece().getColor().equals(Enums.PieceColor.Black)){
-            getBlack().deadPieces.add(destination.getPiece());
+            getBlack().getDeadPieces().add(destination.getPiece());
         }
         else{
-            getWhite().deadPieces.add(destination.getPiece());
+            getWhite().getDeadPieces().add(destination.getPiece());
         }
 
         // pass by reference I hope?
         destination.setPiece(source.getPiece());
         source.setPiece(null);
-    }
-
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    public Player getWhite() {
-        return white;
-    }
-
-    public void setWhite(Player white) {
-        this.white = white;
-    }
-
-    public Player getBlack() {
-        return black;
-    }
-
-    public void setBlack(Player black) {
-        this.black = black;
     }
 }

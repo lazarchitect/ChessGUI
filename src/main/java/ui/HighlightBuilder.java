@@ -19,7 +19,7 @@ public class HighlightBuilder {
         if(currentPiece == null) return;
 
         switch(currentPiece.getType()) {
-            case Pawn:
+            case PAWN:
                 highlightValidPawnMoves(uiBoard, b, row, col);
 
         }
@@ -27,7 +27,7 @@ public class HighlightBuilder {
 
     private static void highlightValidPawnMoves(Group uiBoard, Board b, int row, int col) {
         Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.Black) {
+        if(currentPiece.getColor() == Enums.PieceColor.BLACK) {
             if (currentPiece.getRow() == 1) {
                 if (b.pieceAt(2, col) == null) {
                     highlight(uiBoard, b, 2, currentPiece.getCol());

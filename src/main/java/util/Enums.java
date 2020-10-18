@@ -3,17 +3,17 @@ package main.java.util;
 public class Enums {
 
     public enum PieceColor {
-        White,
-        Black
+        WHITE,
+        BLACK
     }
 
     public enum PieceType {
-        Pawn,
-        King,
-        Rook,
-        Queen,
-        Bishop,
-        Knight
+        PAWN,
+        KING,
+        ROOK,
+        QUEEN,
+        BISHOP,
+        KNIGHT
     }
 
 }

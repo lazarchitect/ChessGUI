@@ -1,13 +1,16 @@
 package main.java.models;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Player {
 
-    String name;
+    private String name;
 
-    List<Piece> deadPieces;
+    private List<Piece> deadPieces;
 
     public Player(){
         deadPieces = new ArrayList<>();

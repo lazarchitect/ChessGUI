@@ -25,7 +25,7 @@ public class GameApplication extends javafx.application.Application {
         String rawBoard = JSONParser.readJSONToString("initialLayout");
         Board b = JSONParser.convertStringToObject(rawBoard);
 
-        new Game(root, b);
+        new Game(b);
 
         BoardBuilder.drawBoard(root, b);
         ChessterBuilder.drawChesster(root);
