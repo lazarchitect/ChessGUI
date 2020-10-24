@@ -80,7 +80,7 @@ public class BoardBuilder {
 
     public static ImageView getPieceView(Piece piece) {
         try {
-            String path = "C:/Users/Eddie/Desktop/" + piece.getColor() + piece.getType() + ".png";
+            String path = "src/main/resources/images/" + piece.getColor() + piece.getType() + ".png";
             FileInputStream file = new FileInputStream(path);
             Image image = new Image(file);
             return new ImageView(image);
