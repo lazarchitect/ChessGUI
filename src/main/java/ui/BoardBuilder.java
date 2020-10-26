@@ -8,10 +8,11 @@ import javafx.scene.shape.Rectangle;
 import main.java.models.Board;
 import main.java.models.Piece;
 import main.java.util.Constants;
-import main.java.util.Utils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
+import static main.java.util.Utils.isDarkTile;
 
 /**
  * Contains various methods for visualizing UI elements, such as the chessboard
@@ -50,7 +51,7 @@ public class BoardBuilder {
         // todo: make a method to highlight a subset list of tiles
         rect.setOnMouseReleased(event -> ClickHandler.handleTileClick(uiBoard, b, row, col));
 
-        if(Utils.isDarkTile(row, col)){
+        if(isDarkTile(row, col)){
             rect.setFill(Color.web("#DDDDDD"));
         }
         else{
@@ -67,7 +68,7 @@ public class BoardBuilder {
         }
     }
 
-    public static void drawPiece(Group uiBoard, Piece piece, int row, int col) {
+    public static void drawPiece(Group uiRow, Piece piece, int row, int col) {
         ImageView pieceView = getPieceView(piece);
         if(pieceView == null) return;
         pieceView.setMouseTransparent(true);
@@ -75,7 +76,7 @@ public class BoardBuilder {
         pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
         pieceView.setFitHeight(Constants.PIECE_HEIGHT);
         pieceView.setFitWidth(Constants.PIECE_WIDTH);
-        uiBoard.getChildren().add(pieceView);
+        uiRow.getChildren().add(pieceView);
     }
 
     public static ImageView getPieceView(Piece piece) {
