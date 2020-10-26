@@ -68,7 +68,7 @@ public class BoardBuilder {
         }
     }
 
-    public static void drawPiece(Group uiBoard, Piece piece, int row, int col) {
+    public static void drawPiece(Group uiRow, Piece piece, int row, int col) {
         ImageView pieceView = getPieceView(piece);
         if(pieceView == null) return;
         pieceView.setMouseTransparent(true);
@@ -76,7 +76,7 @@ public class BoardBuilder {
         pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
         pieceView.setFitHeight(Constants.PIECE_HEIGHT);
         pieceView.setFitWidth(Constants.PIECE_WIDTH);
-        uiBoard.getChildren().add(pieceView);
+        uiRow.getChildren().add(pieceView);
     }
 
     public static ImageView getPieceView(Piece piece) {
