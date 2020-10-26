@@ -23,7 +23,7 @@ public class ChessterBuilder {
 
     public static void drawChesster(Group parent){
         try {
-            FileInputStream file = new FileInputStream("C:/Users/Eddie/Desktop/Chesster.png");
+            FileInputStream file = new FileInputStream("src/main/resources/images/Chesster.png");
             Image image = new Image(file);
             ImageView chesster = new ImageView(image);
             chesster.setOnMouseReleased(event -> System.out.println("hi"));
