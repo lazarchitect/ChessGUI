@@ -64,37 +64,32 @@ public class BoardBuilder {
         main.java.models.Piece piece = b.pieceAt(row, col);
 
         if(piece != null){
-            drawPiece(uiRow, piece, row, col);
+            ImageView pieceImageView = createPieceImageView(uiRow, piece, row, col);
+            uiRow.getChildren().add(pieceImageView);
         }
     }
 
-    public static void drawPiece(Group uiRow, Piece piece, int row, int col) {
-        ImageView pieceView = getPieceView(piece);
-        if(pieceView == null) return;
-        pieceView.setMouseTransparent(true);
-        pieceView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
-        pieceView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
-        pieceView.setFitHeight(Constants.PIECE_HEIGHT);
-        pieceView.setFitWidth(Constants.PIECE_WIDTH);
-        uiRow.getChildren().add(pieceView);
+    public static ImageView createPieceImageView(Group uiRow, Piece piece, int row, int col) {
+        Image pieceImage = createPieceImage(piece);
+        if(pieceImage == null) return null;
+        ImageView pieceImageView = new ImageView(pieceImage);
+        pieceImageView.setMouseTransparent(true);
+        pieceImageView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
+        pieceImageView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
+        pieceImageView.setFitHeight(Constants.PIECE_HEIGHT);
+        pieceImageView.setFitWidth(Constants.PIECE_WIDTH);
+        return pieceImageView;
     }
 
-    public static ImageView getPieceView(Piece piece) {
+    public static Image createPieceImage(Piece piece) {
         try {
             String path = "src/main/resources/images/" + piece.getColor() + piece.getType() + ".png";
             FileInputStream file = new FileInputStream(path);
-            Image image = new Image(file);
-            return new ImageView(image);
+            return new Image(file);
         }
-        catch(FileNotFoundException fnfe){
+        catch(FileNotFoundException fileNotFoundException){
             System.out.println("ERROR: " + piece.getColor() + " " + piece.getType() + " IMAGE NOT FOUND");
             return null;
         }
     }
-
-
-
-
-
-
 }
