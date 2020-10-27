@@ -33,7 +33,6 @@ public class BoardBuilder {
             for(int col = 0; col < 8; col++){
                 drawTile(uiBoard, row, col, b);
             }
-
         }
         root.getChildren().add(uiBoard);
     }
@@ -64,12 +63,12 @@ public class BoardBuilder {
         main.java.models.Piece piece = b.pieceAt(row, col);
 
         if(piece != null){
-            ImageView pieceImageView = createPieceImageView(uiRow, piece, row, col);
+            ImageView pieceImageView = createPieceImageView(piece, row, col);
             uiRow.getChildren().add(pieceImageView);
         }
     }
 
-    public static ImageView createPieceImageView(Group uiRow, Piece piece, int row, int col) {
+    public static ImageView createPieceImageView(Piece piece, int row, int col) {
         Image pieceImage = createPieceImage(piece);
         if(pieceImage == null) return null;
         ImageView pieceImageView = new ImageView(pieceImage);
