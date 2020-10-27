@@ -61,7 +61,8 @@ public class HighlightBuilder {
 
     private static void highlight(Group uiBoard, Board b, int row, int col) {
         Group uiRow = (Group) uiBoard.getChildren().get(row);
-        Rectangle rect = (Rectangle) uiRow.getChildren().get(col);
+        Group uiTile = (Group) uiRow.getChildren().get(col);
+        Rectangle rect = (Rectangle) uiTile.getChildren().get(0);
 
         b.tileAt(row, col).setHighlighted(true);
 
