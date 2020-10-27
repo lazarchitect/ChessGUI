@@ -45,8 +45,6 @@ public class BoardBuilder {
             Constants.TILE_HEIGHT
         );
 
-        // todo: make a method to determine a list of valid tile moves for a given piece
-        // todo: make a method to highlight a subset list of tiles
         rect.setOnMouseReleased(event -> ClickHandler.handleTileClick(uiBoard, b, row, col));
 
         if(isDarkTile(row, col)){
