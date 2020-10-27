@@ -6,8 +6,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import main.java.models.Board;
 import main.java.models.Piece;
-import main.java.util.Enums;
-import main.java.util.Utils;
+import main.java.util.Enums.*;
 
 public class HighlightBuilder {
 
@@ -21,40 +20,52 @@ public class HighlightBuilder {
         switch(currentPiece.getType()) {
             case Pawn:
                 highlightValidPawnMoves(uiBoard, b, row, col);
+            case Bishop:
+                highlightValidBishopMoves(uiBoard, b, row, col);
+
+        }
+    }
+
+    private static void highlightValidBishopMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
 
         }
     }
 
     private static void highlightValidPawnMoves(Group uiBoard, Board b, int row, int col) {
         Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.Black) {
-            if (currentPiece.getRow() == 1) {
-                if (b.pieceAt(2, col) == null) {
-                    highlight(uiBoard, b, 2, currentPiece.getCol());
-                }
-                if (b.pieceAt(3, col) == null) {
-                    highlight(uiBoard, b, 3, currentPiece.getCol());
-                }
+        if(currentPiece.getColor() == PieceColor.Black) {
+
+            if(row == 7) return;
+
+            if(!b.hasPieceAt(row + 1, col)){
+                highlight(uiBoard, b, row + 1, col);
             }
-            else {
-                if (b.pieceAt(currentPiece.getRow() + 1, currentPiece.getCol()) == null) {
-                    highlight(uiBoard, b, currentPiece.getRow() + 1, currentPiece.getCol());
-                }
+            if(row == 1 && !b.hasPieceAt(row + 1, col) && !b.hasPieceAt(row + 2, col)){
+                highlight(uiBoard, b, row + 2, col);
+            }
+            if(col != 7 && b.hasWhitePieceAt(row + 1, col + 1)){
+                highlight(uiBoard, b, row + 1, col + 1);
+            }
+            if(col != 0 && b.hasWhitePieceAt(row + 1, col - 1)){
+                highlight(uiBoard, b, row + 1, col - 1);
             }
         }
-        else {
-            if (currentPiece.getRow() == 6) {
-                if (b.pieceAt(5, col) == null) {
-                    highlight(uiBoard, b, 5, currentPiece.getCol());
-                }
-                if (b.pieceAt(4, col) == null) {
-                    highlight(uiBoard, b, 4, currentPiece.getCol());
-                }
+        else { // white pawn
+            if(row == 0) return;
+
+            if(!b.hasPieceAt(row - 1, col)){
+                highlight(uiBoard, b, row - 1, col);
             }
-            else {
-                if (b.pieceAt(currentPiece.getRow() - 1, currentPiece.getCol()) == null) {
-                    highlight(uiBoard, b, currentPiece.getRow() - 1, currentPiece.getCol());
-                }
+            if(row == 6 && !b.hasPieceAt(row - 1, col) && !b.hasPieceAt(row - 2, col)){
+                highlight(uiBoard, b, row - 2, col);
+            }
+            if(col != 7 && b.hasBlackPieceAt(row - 1, col + 1)){
+                highlight(uiBoard, b, row - 1, col + 1);
+            }
+            if(col != 0 && b.hasBlackPieceAt(row - 1, col - 1)){
+                highlight(uiBoard, b, row - 1, col - 1);
             }
         }
     }
