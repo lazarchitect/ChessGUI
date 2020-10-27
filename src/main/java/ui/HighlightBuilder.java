@@ -60,22 +60,14 @@ public class HighlightBuilder {
     }
 
     private static void highlight(Group uiBoard, Board b, int row, int col) {
-        Group uiRow = (Group) uiBoard.getChildren().get(row);
-        Group uiTile = (Group) uiRow.getChildren().get(col);
-        Rectangle rect = (Rectangle) uiTile.getChildren().get(0);
 
         b.tileAt(row, col).setHighlighted(true);
 
-        if(Utils.isDarkTile(row, col)){
-            rect.setStroke(Color.web("#FFFFDD"));
-            rect.setStrokeWidth(5);
-            rect.setStrokeType(StrokeType.INSIDE);
-        }
-        else {
-            rect.setStroke(Color.web("#666633"));
-            rect.setStrokeWidth(5);
-            rect.setStrokeType(StrokeType.INSIDE);
-        }
+        Rectangle rect = (Rectangle) ((Group) ((Group) uiBoard.getChildren().get(row)).getChildren().get(col)).getChildren().get(0);
+        rect.setStroke(Color.web("#888833"));
+        rect.setStrokeWidth(5);
+        rect.setStrokeType(StrokeType.INSIDE);
+
     }
 
 }
