@@ -2,6 +2,7 @@ package main.java.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import main.java.util.Enums.*;
 
 import java.util.List;
 
@@ -27,6 +28,18 @@ public class Board {
 
     public Piece pieceAt(int row, int col) {
         return this.tiles.get(row).get(col).getPiece();
+    }
+
+    public boolean hasPieceAt(int row, int col){
+        return pieceAt(row, col) != null;
+    }
+
+    public boolean hasBlackPieceAt(int row, int col){
+        return pieceAt(row, col) != null && pieceAt(row, col).getColor() == PieceColor.Black;
+    }
+
+    public boolean hasWhitePieceAt(int row, int col){
+        return pieceAt(row, col) != null && pieceAt(row, col).getColor() == PieceColor.White;
     }
 
     public int move(int destRow, int destCol) {
