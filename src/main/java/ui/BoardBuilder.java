@@ -21,9 +21,9 @@ public class BoardBuilder {
 
     private BoardBuilder(){}
 
-    public static void drawBoard(Group root, Board b){
+    public static void drawBoard(Group uiBoard, Board b){
 
-        Group uiBoard = new Group();
+        uiBoard.getChildren().clear();
 
         for(int row = 0; row < 8; row++){
 
@@ -34,7 +34,6 @@ public class BoardBuilder {
                 drawTile(uiBoard, row, col, b);
             }
         }
-        root.getChildren().add(uiBoard);
     }
 
     public static void drawTile(Group uiBoard, int row, int col, Board b){
@@ -58,14 +57,20 @@ public class BoardBuilder {
         }
 
         Group uiRow = (Group) uiBoard.getChildren().get(row);
-        uiRow.getChildren().add(rect);
 
-        main.java.models.Piece piece = b.pieceAt(row, col);
+        Group uiTile = new Group();
+
+        uiTile.getChildren().add(rect);
+
+        Piece piece = b.pieceAt(row, col);
 
         if(piece != null){
             ImageView pieceImageView = createPieceImageView(piece, row, col);
-            uiRow.getChildren().add(pieceImageView);
+            uiTile.getChildren().add(pieceImageView);
         }
+
+        uiRow.getChildren().add(uiTile);
+
     }
 
     public static ImageView createPieceImageView(Piece piece, int row, int col) {
