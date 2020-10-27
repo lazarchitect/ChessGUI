@@ -17,19 +17,13 @@ public class HighlightBuilder {
 
         if(currentPiece == null) return;
 
-        switch(currentPiece.getType()) {
-            case Pawn:
-                highlightValidPawnMoves(uiBoard, b, row, col);
-            case Bishop:
-                highlightValidBishopMoves(uiBoard, b, row, col);
-
-        }
-    }
-
-    private static void highlightValidBishopMoves(Group uiBoard, Board b, int row, int col){
-        Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == PieceColor.Black){
-
+        switch (currentPiece.getType()) {
+            case Pawn -> highlightValidPawnMoves(uiBoard, b, row, col);
+            case Bishop -> highlightValidBishopMoves(uiBoard, b, row, col);
+            case Knight -> highlightValidKnightMoves(uiBoard, b, row, col);
+            case Queen -> highlightValidQueenMoves(uiBoard, b, row, col);
+            case King -> highlightValidKingMoves(uiBoard, b, row, col);
+            case Rook -> highlightValidRookMoves(uiBoard, b, row, col);
         }
     }
 
@@ -67,6 +61,59 @@ public class HighlightBuilder {
             if(col != 0 && b.hasBlackPieceAt(row - 1, col - 1)){
                 highlight(uiBoard, b, row - 1, col - 1);
             }
+        }
+    }
+
+
+    private static void highlightValidBishopMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
+            // todo Black bishop logic
+        }
+        else { // white Bishop
+            // todo white bishop logic
+        }
+    }
+
+    private static void highlightValidKnightMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
+            // todo Black Knight logic
+        }
+        else { // white Bishop
+            // todo white Knight logic
+        }
+    }
+
+
+    private static void highlightValidQueenMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
+            // todo Black queen logic
+        }
+        else { // white Bishop
+            // todo white queen logic
+        }
+    }
+
+    private static void highlightValidKingMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
+            // todo Black king logic
+        }
+        else { // white Bishop
+            // todo white king logic
+        }
+    }
+
+
+    private static void highlightValidRookMoves(Group uiBoard, Board b, int row, int col){
+        Piece currentPiece = b.pieceAt(row, col);
+        if(currentPiece.getColor() == PieceColor.Black){
+            // todo Black rook logic
+        }
+        else { // white Bishop
+            // todo white rook logic
         }
     }
 
