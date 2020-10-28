@@ -13,6 +13,10 @@ public class Tile {
 
     private Piece piece;
 
+    public boolean isEmpty(){
+        return piece == null;
+    }
+
     @Override
     public String toString() {
         return piece != null ? piece.toString() : null;
