@@ -22,8 +22,10 @@ public class ClickHandler {
         else{
             b.dehighlight();
             BoardBuilder.drawBoard(uiBoard, b);
-            HighlightBuilder.highlightValidMoves(uiBoard, b, row, col);
-            b.setPieceToMove(b.pieceAt(row, col));
+            if(b.hasPieceAt(row, col)) {
+                HighlightBuilder.highlightValidMoves(uiBoard, b, row, col);
+            }
+            b.setPieceToMove(b.pieceAt(row, col)); // could be null
         }
     }
 
