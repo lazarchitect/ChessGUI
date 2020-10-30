@@ -2,18 +2,20 @@ package main.java.ui;
 
 
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.shape.Rectangle;
-import main.java.models.Board;
-import main.java.util.Enums.*;
+import main.java.logic.Board;
+
+import static main.java.ui.HighlightBuilder.highlightValidMoves;
+import static main.java.ui.BoardBuilder.drawBoard;
 
 public class ClickHandler {
+
+    private ClickHandler(){}
 
     public static void handleTileClick(Group uiBoard, Board b, int row, int col){
         if(b.tileAt(row, col).isHighlighted()){
             int moveResult = b.move(row, col);
             if(moveResult == 0){
-                BoardBuilder.drawBoard(uiBoard, b);
+                drawBoard(uiBoard, b);
                 b.setPieceToMove(null);
                 b.dehighlight();
             }
@@ -21,9 +23,9 @@ public class ClickHandler {
         }
         else{
             b.dehighlight();
-            BoardBuilder.drawBoard(uiBoard, b);
+            drawBoard(uiBoard, b);
             if(b.hasPieceAt(row, col)) {
-                HighlightBuilder.highlightValidMoves(uiBoard, b, row, col);
+                highlightValidMoves(uiBoard, b, row, col);
             }
             b.setPieceToMove(b.pieceAt(row, col)); // could be null
         }
