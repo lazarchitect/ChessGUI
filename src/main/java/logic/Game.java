@@ -1,4 +1,4 @@
-package main.java.models;
+package main.java.logic;
 
 import lombok.Data;
 import main.java.util.Enums;
