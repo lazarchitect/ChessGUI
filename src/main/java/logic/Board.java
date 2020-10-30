@@ -1,4 +1,4 @@
-package main.java.models;
+package main.java.logic;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -45,6 +45,14 @@ public class Board {
     public int move(int destRow, int destCol) {
         int srcRow = pieceToMove.getRow();
         int srcCol = pieceToMove.getCol();
+
+        if(pieceToMove.getType() == PieceType.Pawn &&
+                ((pieceToMove.getColor() == PieceColor.Black && destRow == 7) ||
+                (pieceToMove.getColor() == PieceColor.White && destRow == 0))){
+            // TODO PROMOTION
+            //PieceType pieceType = promptUserForChoice();
+            //pieceToMove.setType(pieceType);
+        }
 
         tileAt(destRow, destCol).setPiece(pieceToMove);
         tileAt(srcRow, srcCol).setPiece(null);
