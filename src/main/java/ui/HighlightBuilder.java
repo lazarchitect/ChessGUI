@@ -6,9 +6,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import main.java.logic.Board;
 import main.java.logic.Coordinate;
+import main.java.logic.CoordinateList;
 import main.java.util.Enums.*;
-
-import java.util.List;
 
 import static main.java.logic.MoveLogic.*;
 
@@ -31,7 +30,7 @@ public class HighlightBuilder {
         }
     }
 
-    private static void highlightAll(List<Coordinate> validMoves, Group uiBoard, Board b) {
+    private static void highlightAll(CoordinateList validMoves, Group uiBoard, Board b) {
         for(Coordinate coord: validMoves) {
             highlight(uiBoard, b, coord.getRow(), coord.getCol());
         }
