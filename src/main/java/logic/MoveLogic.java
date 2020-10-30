@@ -97,46 +97,22 @@ public class MoveLogic {
         return validMoves;
     }
 
-
-
     public static CoordinateList validKnightMoves(Board b, int row, int col){
-
-        Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == PieceColor.Black){
-            return validBlackKnightMoves(b, row, col);
-
-        }
-        else { // white Knight
-            return validWhiteKnightMoves( b, row, col);
-        }
-    }
-
-    private static CoordinateList validBlackKnightMoves(Board b, int row, int col){
         CoordinateList retval = new CoordinateList();
-        for(int[] xyOffset: knightOffsets){
-            int destRow = row + xyOffset[0];
-            int destCol = col + xyOffset[1];
+
+        PieceColor pieceColor = b.pieceAt(row, col).getColor();
+
+        for(int[] knightOffset: knightOffsets){
+            int destRow = row + knightOffset[0];
+            int destCol = col + knightOffset[1];
             if(outOfBounds(destRow, destCol)) continue;
-            if(b.tileAt(row + xyOffset[0], col + xyOffset[1]).isEmpty() || b.hasWhitePieceAt(row + xyOffset[0], col + xyOffset[1])) {
+            if(b.tileAt(destRow, destCol).isEmpty() || b.pieceAt(destRow, destCol).getColor() != pieceColor) {
                 retval.add(destRow, destCol);
             }
         }
         return retval;
     }
 
-
-    private static CoordinateList validWhiteKnightMoves(Board b, int row, int col){
-        CoordinateList retval = new CoordinateList();
-        for(int[] coord: knightOffsets){
-            int destRow = row + coord[0];
-            int destCol = col + coord[1];
-            if(outOfBounds(destRow, destCol)) continue;
-            if(b.tileAt(row + coord[0], col + coord[1]).isEmpty() || b.hasBlackPieceAt(row + coord[0], col + coord[1])) {
-                retval.add(destRow, destCol);
-            }
-        }
-        return retval;
-    }
 
     public static CoordinateList validQueenMoves(Board b, int row, int col){
         PieceColor pieceColor = b.pieceAt(row, col).getColor();
