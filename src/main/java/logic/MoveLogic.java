@@ -14,7 +14,7 @@ public class MoveLogic {
     private static final int[][] knightOffsets = {{1,2},{1,-2},{-1,2},{-1,-2},{2,1},{2,-1},{-2,1},{-2,-1}};
     private static final int[][] bishopOffsets = {{1,1},{1,-1},{-1,1},{-1,-1}};
     private static final int[][] rookOffsets = {{0,1},{0,-1},{1,0},{-1,0}};
-    private static final int[][] queenOffsets = {{1,1},{1,-1},{-1,1},{-1,-1},{0,1},{0,-1},{1,0},{-1,0}};
+    private static final int[][] royalOffsets = {{1,1},{1,-1},{-1,1},{-1,-1},{0,1},{0,-1},{1,0},{-1,0}};
 
     private static void scan(List<Coordinate> coords, Board b, int row, int col, int rowOffset, int colOffset, Enums.PieceColor pieceColor) {
 
@@ -145,21 +145,30 @@ public class MoveLogic {
 
         List<Coordinate> validMoves = new ArrayList<>();
 
-        for(int[] queenOffset: queenOffsets) {
+        for(int[] queenOffset: royalOffsets) {
             scan(validMoves, b, row, col, queenOffset[0], queenOffset[1], pieceColor);
         }
         return validMoves;
     }
 
     public static List<Coordinate> validKingMoves(Board b, int row, int col){
-        Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.Black){
-            //return validBlackKingMoves(b, row, col);
+        List<Coordinate> retval = new ArrayList<>();
+        Enums.PieceColor pieceColor = b.pieceAt(row, col).getColor();
+
+        for (int[] kingOffset : royalOffsets) {
+            int destRow = row + kingOffset[0];
+            int destCol = col + kingOffset[1];
+
+            if (outOfBounds(destRow, destCol)) continue;
+
+            if ((b.tileAt(destRow, destCol).isEmpty() || b.pieceAt(destRow, destCol).getColor() != pieceColor)) {
+                // TODO make sure this dest tile isnt dangerous for our dear leader
+                retval.add(new Coordinate(row + kingOffset[0], col + kingOffset[1]));
+            }
         }
-        else { // white King
-            //return validWhiteKingMoves(b, row, col);
-        }
-        return null;
+
+
+        return retval;
     }
 
 
