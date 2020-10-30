@@ -7,8 +7,10 @@ import main.java.logic.Board;
 import main.java.logic.Game;
 import main.java.ui.BoardBuilder;
 import main.java.ui.ChessterBuilder;
-import main.java.util.Constants;
 import main.java.util.JSONParser;
+
+import static main.java.util.Constants.SCENE_HEIGHT;
+import static main.java.util.Constants.SCENE_WIDTH;
 
 public class GameApplication extends javafx.application.Application {
 
@@ -20,7 +22,7 @@ public class GameApplication extends javafx.application.Application {
     public void start(Stage stage) {
 
         Group root = new Group();
-        Scene scene = new Scene(root, Constants.SCENE_WIDTH, Constants.SCENE_HEIGHT);
+        Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
 
         String rawBoard = JSONParser.readJSONToString("initialLayout");
         Board b = JSONParser.convertStringToObject(rawBoard);

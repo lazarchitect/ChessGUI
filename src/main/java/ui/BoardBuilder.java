@@ -7,12 +7,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import main.java.logic.Board;
 import main.java.logic.Piece;
-import main.java.util.Constants;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import static main.java.util.Utils.isDarkTile;
+import static main.java.util.Constants.*;
 
 /**
  * Contains various methods for visualizing UI elements, such as the chessboard
@@ -39,10 +39,10 @@ public class BoardBuilder {
     private static void drawTile(Group uiBoard, int row, int col, Board b){
 
         Rectangle rect = new Rectangle(
-            (col * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
-            (row * Constants.TILE_HEIGHT) + Constants.BOARD_Y_OFFSET,
-            Constants.TILE_WIDTH,
-            Constants.TILE_HEIGHT
+            (col * TILE_WIDTH) + BOARD_X_OFFSET,
+            (row * TILE_HEIGHT) + BOARD_Y_OFFSET,
+            TILE_WIDTH,
+            TILE_HEIGHT
         );
 
         rect.setOnMouseReleased(event -> ClickHandler.handleTileClick(uiBoard, b, row, col));
@@ -76,10 +76,10 @@ public class BoardBuilder {
         if(pieceImage == null) return null;
         ImageView pieceImageView = new ImageView(pieceImage);
         pieceImageView.setMouseTransparent(true);
-        pieceImageView.setX(Constants.BOARD_X_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_WIDTH * col));
-        pieceImageView.setY(Constants.BOARD_Y_OFFSET + Constants.PIECE_OFFSET + (Constants.TILE_HEIGHT * row));
-        pieceImageView.setFitHeight(Constants.PIECE_HEIGHT);
-        pieceImageView.setFitWidth(Constants.PIECE_WIDTH);
+        pieceImageView.setX(BOARD_X_OFFSET + PIECE_OFFSET + (TILE_WIDTH * col));
+        pieceImageView.setY(BOARD_Y_OFFSET + PIECE_OFFSET + (TILE_HEIGHT * row));
+        pieceImageView.setFitHeight(PIECE_HEIGHT);
+        pieceImageView.setFitWidth(PIECE_WIDTH);
         return pieceImageView;
     }
 
