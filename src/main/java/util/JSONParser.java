@@ -1,7 +1,7 @@
 package main.java.util;
 
 import com.google.gson.Gson;
-import main.java.models.Board;
+import main.java.logic.Board;
 
 import java.io.File;
 import java.io.FileReader;
