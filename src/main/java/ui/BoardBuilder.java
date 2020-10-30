@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import main.java.models.Board;
-import main.java.models.Piece;
+import main.java.logic.Board;
+import main.java.logic.Piece;
 import main.java.util.Constants;
 
 import java.io.FileInputStream;
@@ -36,7 +36,7 @@ public class BoardBuilder {
         }
     }
 
-    public static void drawTile(Group uiBoard, int row, int col, Board b){
+    private static void drawTile(Group uiBoard, int row, int col, Board b){
 
         Rectangle rect = new Rectangle(
             (col * Constants.TILE_WIDTH) + Constants.BOARD_X_OFFSET,
@@ -71,7 +71,7 @@ public class BoardBuilder {
 
     }
 
-    public static ImageView createPieceImageView(Piece piece, int row, int col) {
+    private static ImageView createPieceImageView(Piece piece, int row, int col) {
         Image pieceImage = createPieceImage(piece);
         if(pieceImage == null) return null;
         ImageView pieceImageView = new ImageView(pieceImage);
@@ -83,7 +83,7 @@ public class BoardBuilder {
         return pieceImageView;
     }
 
-    public static Image createPieceImage(Piece piece) {
+    private static Image createPieceImage(Piece piece) {
         try {
             String path = "src/main/resources/images/" + piece.getColor() + piece.getType() + ".png";
             FileInputStream file = new FileInputStream(path);
