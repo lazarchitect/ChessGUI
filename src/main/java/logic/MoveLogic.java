@@ -1,9 +1,7 @@
 package main.java.logic;
 
-import main.java.util.Enums;
+import main.java.util.Enums.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static main.java.util.Utils.outOfBounds;
 
@@ -16,7 +14,7 @@ public class MoveLogic {
     private static final int[][] rookOffsets = {{0,1},{0,-1},{1,0},{-1,0}};
     private static final int[][] royalOffsets = {{1,1},{1,-1},{-1,1},{-1,-1},{0,1},{0,-1},{1,0},{-1,0}};
 
-    private static void scan(CoordinateList coords, Board b, int row, int col, int rowOffset, int colOffset, Enums.PieceColor pieceColor) {
+    private static void scan(CoordinateList coords, Board b, int row, int col, int rowOffset, int colOffset, PieceColor pieceColor) {
 
         if(outOfBounds(row + rowOffset, col + colOffset) ) {
             return;
@@ -37,7 +35,7 @@ public class MoveLogic {
 
     public static CoordinateList validPawnMoves(Board b, int row, int col) {
         Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.Black) {
+        if(currentPiece.getColor() == PieceColor.Black) {
             return validBlackPawnMoves(b, row, col);
         }
         else { // white pawn
@@ -89,7 +87,7 @@ public class MoveLogic {
 
 
     public static CoordinateList validBishopMoves(Board b, int row, int col){
-        Enums.PieceColor pieceColor = b.pieceAt(row, col).getColor();
+        PieceColor pieceColor = b.pieceAt(row, col).getColor();
 
         CoordinateList validMoves = new CoordinateList();
 
@@ -104,7 +102,7 @@ public class MoveLogic {
     public static CoordinateList validKnightMoves(Board b, int row, int col){
 
         Piece currentPiece = b.pieceAt(row, col);
-        if(currentPiece.getColor() == Enums.PieceColor.Black){
+        if(currentPiece.getColor() == PieceColor.Black){
             return validBlackKnightMoves(b, row, col);
 
         }
@@ -141,7 +139,7 @@ public class MoveLogic {
     }
 
     public static CoordinateList validQueenMoves(Board b, int row, int col){
-        Enums.PieceColor pieceColor = b.pieceAt(row, col).getColor();
+        PieceColor pieceColor = b.pieceAt(row, col).getColor();
 
         CoordinateList validMoves = new CoordinateList();
 
@@ -153,7 +151,7 @@ public class MoveLogic {
 
     public static CoordinateList validKingMoves(Board b, int row, int col){
         CoordinateList retval = new CoordinateList();
-        Enums.PieceColor pieceColor = b.pieceAt(row, col).getColor();
+        PieceColor pieceColor = b.pieceAt(row, col).getColor();
 
         for (int[] kingOffset : royalOffsets) {
             int destRow = row + kingOffset[0];
@@ -173,7 +171,7 @@ public class MoveLogic {
 
 
     public static CoordinateList validRookMoves(Board b, int row, int col){
-        Enums.PieceColor pieceColor = b.pieceAt(row, col).getColor();
+        PieceColor pieceColor = b.pieceAt(row, col).getColor();
 
         CoordinateList validMoves = new CoordinateList();
 
