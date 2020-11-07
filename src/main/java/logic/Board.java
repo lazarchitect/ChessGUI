@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import main.java.util.Enums.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.List;
 
 /**
@@ -59,6 +62,15 @@ public class Board {
         pieceToMove.setRow(destRow);
         pieceToMove.setCol(destCol);
 
+        try {
+            Socket s = new Socket("127.0.0.1", 34001);
+            PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+            System.out.println("sending move data to server");
+            out.println(pieceToMove.getColor() + " " + pieceToMove.getType() + " moved to " + destRow + destCol + "\n");
+        }
+        catch (IOException ioe) {
+            System.out.println("somethings fucked");
+        }
         return 0;
     }
 
