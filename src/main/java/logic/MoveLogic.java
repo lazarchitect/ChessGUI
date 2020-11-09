@@ -57,10 +57,10 @@ public class MoveLogic {
         if(row == starterRow && !b.hasPieceAt(row + direction, col) && !b.hasPieceAt(row + direction*2, col)){
             retval.add(row + direction*2, col);
         }
-        if(col != 7 && b.hasWhitePieceAt(row + direction, col + 1)){
+        if(col != 7 && b.hasPieceAt(row + direction, col + 1) && b.pieceAt(row + direction, col + 1).getColor() != pieceColor){
             retval.add(row + direction, col + 1);
         }
-        if(col != 0 && b.hasWhitePieceAt(row + direction, col - 1)){
+        if(col != 0 && b.hasPieceAt(row + direction, col - 1) && b.pieceAt(row + direction, col - 1).getColor() != pieceColor){
             retval.add(row + direction, col - 1);
         }
         return retval;
