@@ -2,6 +2,7 @@ package main.java.logic;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import main.java.util.Enums.*;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
  * Class that represents an 8x8 board state of tiles and pieces.
  * Instantiated via Gson reading JSON, never directly.
  */
+
 public class Board {
 
     @Getter
@@ -46,6 +48,7 @@ public class Board {
     }
 
     public int move(int destRow, int destCol) {
+
         int srcRow = pieceToMove.getRow();
         int srcCol = pieceToMove.getCol();
 
@@ -62,15 +65,17 @@ public class Board {
         pieceToMove.setRow(destRow);
         pieceToMove.setCol(destCol);
 
-        try {
-            Socket s = new Socket("127.0.0.1", 34001);
+        try (Socket s = new Socket("127.0.0.1", 34001)) {
             PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-            System.out.println("sending move data to server");
+
+            System.out.println("Sending move data to server.");
             out.println(pieceToMove.getColor() + " " + pieceToMove.getType() + " moved to " + destRow + destCol + "\n");
         }
         catch (IOException ioe) {
-            System.out.println("somethings fucked");
+            System.out.println("Server connection could not be established.");
         }
+
+
         return 0;
     }
 
