@@ -7,6 +7,7 @@ import main.java.logic.Board;
 import main.java.logic.Game;
 import main.java.ui.BoardBuilder;
 import main.java.ui.ChessterBuilder;
+import main.java.ui.ListBuilder;
 import main.java.util.JSONParser;
 
 import static main.java.util.Constants.SCENE_HEIGHT;
@@ -30,6 +31,9 @@ public class GameApplication extends javafx.application.Application {
         new Game(b);
 
         BoardBuilder.drawBoard(root, b);
+
+        ListBuilder.buildList(root);
+
         ChessterBuilder.drawChesster(root);
         ChessterBuilder.drawChessterText(root);
 
