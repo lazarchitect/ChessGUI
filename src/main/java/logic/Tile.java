@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public class Tile {
 
+    private Tile(){}
+
     private boolean highlighted;
 
     private Piece piece;
