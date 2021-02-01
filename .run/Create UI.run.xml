@@ -2,7 +2,7 @@
   <configuration default="false" name="Create UI" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="main.java.GameApplication" />
     <module name="ChessGUI" />
-    <option name="VM_PARAMETERS" value="-p /usr/lib/jvm/javafx-sdk-11.0.2/lib --module-path src/libraries/javafx-sdk-11.0.2/lib --add-modules javafx.controls" />
+    <option name="VM_PARAMETERS" value="-p /usr/lib/jvm/javafx-sdk-11.0.2/lib --module-path libraries/javafx-sdk-11.0.2/lib --add-modules javafx.controls" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
