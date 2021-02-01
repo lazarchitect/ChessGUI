@@ -7,7 +7,7 @@ import javafx.scene.shape.StrokeType;
 import main.java.logic.Board;
 import main.java.logic.Coordinate;
 import main.java.logic.CoordinateList;
-import main.java.util.Enums.*;
+import main.java.util.Enums.PieceType;
 
 import static main.java.logic.MoveLogic.*;
 

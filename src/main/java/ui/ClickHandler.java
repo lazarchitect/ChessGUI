@@ -4,8 +4,8 @@ package main.java.ui;
 import javafx.scene.Group;
 import main.java.logic.Board;
 
-import static main.java.ui.HighlightBuilder.highlightValidMoves;
 import static main.java.ui.BoardBuilder.drawBoard;
+import static main.java.ui.HighlightBuilder.highlightValidMoves;
 
 public class ClickHandler {
 

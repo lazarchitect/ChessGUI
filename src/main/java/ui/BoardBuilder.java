@@ -11,8 +11,8 @@ import main.java.logic.Piece;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import static main.java.util.Utils.isDarkTile;
 import static main.java.util.Constants.*;
+import static main.java.util.Utils.isDarkTile;
 
 /**
  * Contains various methods for visualizing UI elements, such as the chessboard

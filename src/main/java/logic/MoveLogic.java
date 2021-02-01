@@ -1,7 +1,6 @@
 package main.java.logic;
 
-import main.java.util.Enums.*;
-
+import main.java.util.Enums.PieceColor;
 
 import static main.java.util.Utils.outOfBounds;
 
@@ -17,7 +16,7 @@ public class MoveLogic {
     private static final int blackDirection = 1;
 
     // recursive method to scan a straight line across the board for rooks, bishops, and queens
-    private static void scan(CoordinateList coords, Board b, int row, int col, int rowOffset, int colOffset, PieceColor pieceColor) {
+    private static void scan(CoordinateList coordinates, Board b, int row, int col, int rowOffset, int colOffset, PieceColor pieceColor) {
 
         // base case: line has exited the board
         if(outOfBounds(row + rowOffset, col + colOffset) ) {
@@ -27,14 +26,14 @@ public class MoveLogic {
         // base case: there's a piece in the way
         if(b.hasPieceAt(row + rowOffset, col + colOffset)){
             if(b.pieceAt(row + rowOffset, col + colOffset).getColor() != pieceColor) {
-                coords.add(row + rowOffset, col + colOffset);
+                coordinates.add(row + rowOffset, col + colOffset);
             }
             return;
         }
 
         // empty tile? keep going
-        coords.add(row + rowOffset, col + colOffset);
-        scan(coords, b, row + rowOffset, col + colOffset, rowOffset, colOffset, pieceColor);
+        coordinates.add(row + rowOffset, col + colOffset);
+        scan(coordinates, b, row + rowOffset, col + colOffset, rowOffset, colOffset, pieceColor);
 
     }
 

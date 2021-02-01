@@ -2,8 +2,8 @@ package main.java.logic;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import main.java.util.Enums.*;
+import main.java.util.Enums.PieceColor;
+import main.java.util.Enums.PieceType;
 
 import java.io.IOException;
 import java.io.PrintWriter;

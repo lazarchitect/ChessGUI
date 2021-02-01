@@ -1,10 +1,7 @@
 package main.java.ui;
 
 import javafx.scene.Group;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.util.Callback;
-import main.java.logic.Tile;
 
 public class ListBuilder {
 
